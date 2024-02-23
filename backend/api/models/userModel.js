@@ -19,17 +19,20 @@ const userSchema = new mongoose.Schema({
     },
     experiences: [
         {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Experience",
         },
     ],
     projects: [
         {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Project",
         },
     ],
     skills: [
         {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Skill",
         },
     ],
 })
