@@ -7,7 +7,8 @@ import Comment from "../../../images/post-comment.svg"
 import Share from "../../../images/post-share.svg"
 import Send from "../../../images/post-send.svg"
 import Comments from "../comments/Comments"
-
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../../features/userSlice';
 export const PostActions = ({ title, icon }) => {
     return (
         <div className='post-action'>
@@ -17,7 +18,7 @@ export const PostActions = ({ title, icon }) => {
       )
 }
 
-const Post = ({ avatar, name, description, content, timestamp, comments }) => {
+const Post = ({  timestamp }) => {
     const [postSeniority, setPostSeniority] = useState("");
     const [likeEmote, setLikeEmote] = useState("https://static-exp1.licdn.com/sc/h/8ekq8gho1ruaf8i7f86vd1ftt");
     const [celebrateEmote, setCelebrateEmote] = useState("https://static-exp1.licdn.com/sc/h/b1dl5jk88euc7e9ri50xy5qo8");
@@ -26,7 +27,9 @@ const Post = ({ avatar, name, description, content, timestamp, comments }) => {
     const [loveEmote, setLoveEmote] = useState("https://static-exp1.licdn.com/sc/h/cpho5fghnpme8epox8rdcds22");
     const [insightfulEmote, setInsightfulEmote] = useState("https://static-exp1.licdn.com/sc/h/lhxmwiwoag9qepsh4nc28zus");
     const [curiousEmote, setCuriousEmote] = useState("https://static-exp1.licdn.com/sc/h/4mv33903v0o9ikpwfuy2ftcc6");
-    
+
+    const user = useSelector(selectUser);
+
     useEffect(()=>{
         if(!timestamp?.seconds){
             setPostSeniority("1s");
@@ -50,16 +53,18 @@ const Post = ({ avatar, name, description, content, timestamp, comments }) => {
             }
         }
     }, [])
-
+    const des= 'MERN stack Developer'; 
+const content= 'this is content text test'; 
+const comments = 'commentnnnn'
   return (
     <div className='post'>
         <div className="post-section">
             <div className="post-header">
                 <div className="left-side">
-                    <img className='post-owner-avatar' src={avatar} alt="avatar" width="50" height="50" />
+                    <img className='post-owner-avatar' src={ user.photoURL} alt="avatar" width="50" height="50" />
                     <div className="post-owner-infos">
-                        <h3>{name}</h3>
-                        <p>{description}</p>
+                        <h3>{user.displayName}</h3>
+                        <p>{des}</p>
                         <div className="post-publishing-time">
                             <span>{postSeniority} . </span>
                             <img src={VisibilityPublic} alt="public" />

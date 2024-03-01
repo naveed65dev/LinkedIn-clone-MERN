@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import Logo from '../../images/full-logo.svg'
 import GoogleLogo from '../../images/google-logo.svg'
 import { auth, googleSignIn } from "../../firebase"
 import "./Login.css"
 import { useDispatch } from 'react-redux'
-import { login } from "../../features/userSlice"
 
 const Login = () => {
 
@@ -12,14 +11,14 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [avatarurl, setAvatarurl] = useState("");
-  const [description, setDescription] = useState("New User");
+  const [description] = useState("New User");
   const [signUp, setSignUp] = useState(false);
   const dispatch = useDispatch("");
   const validRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const handleGoogleSignIn = async () =>{
     try{
-      await googleSignIn();
+      googleSignIn();
     } catch (error){
       console.log(error);
     }

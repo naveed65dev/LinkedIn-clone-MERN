@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import Cover from '../../../images/cover.jfif'
 import TryPremium from '../../../images/tryPremium.svg'
 import Items from '../../../images/items.svg'
@@ -15,9 +14,9 @@ const SidebarTop = () => {
             <img className='sidebar-top-cover' src={Cover} alt="" />
             <img className='sidebar-top-avatar' src={user.photoURL} alt="" />
             <h3>
-                <a href="#">{user.displayName}</a>
+                <a>{user.displayName}</a>
             </h3>
-            <p>Front-end Web Developer</p>
+            <p>MERN stack Developer</p>
         </div>
         <div className="stats">
             <div className="stat">

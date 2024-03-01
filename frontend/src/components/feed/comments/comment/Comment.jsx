@@ -2,6 +2,7 @@ import React from 'react'
 import ThreeDots from "../../../../images/three-dots.svg"
 import "./Comment.css"
 
+
 const Comment = ({ commentOwnerAvatar, commentOwnerName, commentOwnerDescription, commentContent }) => {
   return (
     <div className='comment'>
@@ -28,4 +29,4 @@ const Comment = ({ commentOwnerAvatar, commentOwnerName, commentOwnerDescription
   )
 }
 
-export default Comment
+export default Comment;

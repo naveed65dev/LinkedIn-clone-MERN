@@ -1,7 +1,7 @@
 import React from 'react'
 import Info from "./../../../images/info-icon.svg"
 import "./TopWidget.css"
-
+import jh from '../../../images/jh.jpeg'
 const TopWidgetSuggestion = ({ avatar, name, description }) =>{
   return(
     <div className="top-widget-suggestion">
@@ -24,7 +24,7 @@ const TopWidget = () => {
       </div>
       <div className="top-widget-body">
         <TopWidgetSuggestion 
-          avatar="https://c6oxm85c.cloudimg.io/cdno/n/q85/https://az617363.vo.msecnd.net/imgmodels/models/MD10003103/andre_fcd443a9f19b70092c007865f335f7693_thumb.jpg"
+          avatar={jh}
           name="Jhon Doe"
           description="IT Recruiter"
         />

@@ -1,6 +1,6 @@
 import User from '../models/userModel.js';
 import bcrypt from 'bcrypt';
-import { getToken } from '../utils/helper.js';
+ 
 
 // Create a new user
 
@@ -21,11 +21,7 @@ export const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUserDetails = {firstName, lastName, password: hashedPassword, email};
     const newUser = await User.create(newUserDetails);
-
-    const token = getToken(email, newUser);
-    const userToReturn = {...newUser.toJSON(), token};
-    delete userToReturn.password;
-    return res.status(200).json(userToReturn);
+ 
 };
 
 //login 
@@ -50,8 +46,5 @@ export const login = async (req, res) => {
         return res.status(401).json({ err: "Invalid username or password" });
     }
 
-    const token = getToken(email, user);
-    const userToReturn = { ...user.toJSON(), token };
-    delete userToReturn.password;
-    return res.status(200).json(userToReturn);
+    
 };

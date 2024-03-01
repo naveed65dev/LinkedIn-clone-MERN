@@ -1,36 +1,25 @@
+ 
 import dotenv from 'dotenv';
+
 dotenv.config();
- import User from '../models/userModel';
-import passport from 'passport';
-import passportJwt from 'passport-jwt';
 
-const { ExtractJwt, Strategy: JwtStrategy } = passportJwt;
+const verifyToken = (req, res, next) => {
+  const authHeader = req.headers.authorization;
 
-const SECRETKEY = process.env.SECRETKEY;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(403).json({ message: 'Token not provided' });
+  }
 
+  const token = authHeader.split(' ')[1];
 
+  // You don't need to verify custom tokens on the server-side
+  // They are already signed by your Firebase service account
 
-//passport-jwt setup
-let opts = {};
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = SECRETKEY; // Corrected the property name
+  // Set the decoded token data in the request
+  req.userId = token;
 
- passport.use(
-    new JwtStrategy(opts, async function (jwt_payload, done) {
-        try{
-           const user =  User.findOne({_id: jwt_payload.identifier});
-                
-                if(user){
-                    done(null, user);
-                }
-                else{
-                    done(null, false);
-                }
-        } catch(err) {
-            if(err) {
-                done(err, null);
-            }
-        }
-       
-    })
-);
+  // Move to the next middleware
+  next();
+};
+
+export default verifyToken;

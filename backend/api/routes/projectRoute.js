@@ -1,10 +1,10 @@
 import express from 'express';
 const router = express.Router();
 import {create} from '../controller/projectController.js';
-import passport from 'passport';
+import verifyToken from '../middleware/verifyToken.js';
 
 // Routes for projectController
 
-router.post('/create/project',  passport.authenticate("jwt", {session: false}), create);
+router.post('/create/project',  create);
 
 export default router;
